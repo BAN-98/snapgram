@@ -1,14 +1,26 @@
 import { Route, Routes } from "react-router-dom";
-import "./index.css";
+import "./globals.css";
 import "@fontsource/poppins";
+import SignInForm from "./_auth/forms/SignInForm";
+import { Home } from "./_root/pages";
+import AuthLayout from "./_auth/AuthLayout";
+import SignUpForm from "./_auth/forms/SignUpForm";
+import RootLayout from "./_root/RootLayout";
+
 const App = () => {
   return (
     <main className="flex h-screen">
       <Routes>
         {/* public routes */}
-        <Route path="/sign-in" element={<} />
+        <Route element={<AuthLayout />}>
+          <Route path="/sign-in" element={<SignInForm />} />
+          <Route path="/sign-up" element={<SignUpForm />} />
+        </Route>
 
         {/* private routes */}
+        <Route element={<RootLayout />}>
+          <Route index element={<Home />} />
+        </Route>
       </Routes>
     </main>
   );
